@@ -1,6 +1,6 @@
 function caesarCipher(string, number) {
   const alphabet = "abcdefghijklmnopqrstuvwxyz".split("");
-
+  // h is at 7, ...
   // index of 'h', index of 'e' index of 'l', index of 'l' , index of 'o'
   // put all indices to an array
 
@@ -8,8 +8,8 @@ function caesarCipher(string, number) {
 
   const getIndex = () => {
     // get index position of each alphabet
-    let i = 0;
     const indices = [];
+    let i = 0;
     while (i < stringLetter.length) {
       indices.push(alphabet.indexOf(stringLetter[i++]));
     }
@@ -19,7 +19,16 @@ function caesarCipher(string, number) {
   const newIndex = () => {
     return getIndex().map((el) => el + number);
   };
-  return { getIndex, newIndex };
+
+  const getNewLetter = () => {
+    const newLetter = [];
+    newIndex().forEach((el) => {
+      newLetter.push(alphabet[el]);
+    });
+
+    return newLetter.join("");
+  };
+  return { getIndex, newIndex, getNewLetter };
 }
 
 export default caesarCipher;
